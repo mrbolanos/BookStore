@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./WEB-INF/templates/default.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="top">
+        Book
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form>
+            <p:growl id="mesages" globalOnly ="true" showSummary ="false" showDetail="true"/>
+            <h:panelGrid columns = "3">
+                <h:outputLabel value="id"/>
+                <h:inputText id="txId" required="true" requiredMessage="ID es un campo requerido"
+                             value="#{bookController.current.id}"  />
+                <p:message for ="txId"/>
+                
+                <h:outputLabel value="Title"/>
+                <h:inputText id="txTitle" required="true" requiredMessage="Title es un campo requerido"
+                             value="#{bookController.current.title}"  />
+                <p:message for ="txTitle"/>
+                
+                <h:outputLabel value="Price"/>
+                <h:inputText id="txPrice" required="true" requiredMessage="Price es un campo requerido"
+                             value="#{bookController.current.price}"  />
+                <p:message for ="txPrice"/>
+                
+                <h:outputLabel value="Description"/>
+                <h:inputText id="txDescription" required="true" requiredMessage="Description es un campo requerido"
+                             value="#{bookController.current.description}"  />
+                <p:message for ="txDescription"/>
+                
+                <h:outputLabel value="ISBN"/>
+                <h:inputText id="txIsbn" required="true" requiredMessage="ISBN es un campo requerido"
+                             value="#{bookController.current.isbn}"  />
+                <p:message for ="txIsbn"/>
+                
+                <h:outputLabel value="Number of page"/>
+                <h:inputText id="txNb" value="#{bookController.current.nbofpage}"  />
+                <h:panelGroup/>
+                
+                <h:outputLabel value="Illustrations"/>
+                <h:inputText id="txIllustrations" value="#{bookController.current.illustrations}"  />
+                <h:panelGroup/>
+                
+                <p:commandButton value ="Save" action="#{bookController.save()}" update="@form" />
+                
+                
+                
+            </h:panelGrid>
+            
+            <p:dataTable var="book" value="#{bookController.books}">
+                <f:facet name ='header'>
+                    <h:outputLabel value="Lista de libros"/>
+                </f:facet>
+                <p:column headerText="Id">
+                    <h:outputLabel value="#{book.id}"/>
+                </p:column>
+                <p:column headerText="Title">
+                    <h:outputLabel value="#{book.title}"/>
+                </p:column>
+                <p:column headerText="Price">
+                    <h:outputLabel value="#{book.price}"/>
+                </p:column>
+                <p:column headerText="Description">
+                    <h:outputLabel value="#{book.description}"/>
+                </p:column>
+                <p:column headerText="ISBN">
+                    <h:outputLabel value="#{book.isbn}"/>
+                </p:column>
+                <p:column headerText="Number of page">
+                    <h:outputLabel value="#{book.nbofpage}"/>
+                </p:column>
+                <p:column headerText="Illustrations">
+                    <h:outputLabel value="#{book.illustrations}"/>
+                </p:column>
+                
+                <f:facet name="Footer">
+                    <h:outputLabel value="Total de libros: #{bookController.books.size()}"/>    
+                </f:facet>
+            </p:dataTable>
+            
+            
+        </h:form>
+    </ui:define>
+
+    <ui:define name="bottom">
+        bottom
+    </ui:define>
+
+</ui:composition>
